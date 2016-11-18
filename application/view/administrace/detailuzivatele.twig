@@ -1,0 +1,111 @@
+{% extends '/_templates/_base.twig' %}
+{% block title %}Uživatelé{% endblock %}
+{% block content %}
+    <div class="nazev_stranky col-md-12">
+        <h2>Detail uživatele: <small>{{ uzivatel.jmeno }} {{ uzivatel.prijmeni }}</small></h2>
+    </div>
+    <div class="col-md-6 col-xs-12">
+        <form id="zmena_udaju_form" action="{{ makeURL('administrace:zmenitudaje') }}" method="post">
+            <div class="form-group">
+                <label for="zmena_udaju_form_nick">Nick:</label>
+                <input type="text" name="uzivatel[nick]" id="zmena_udaju_form_nick" class="form-control" placeholder="Nick" value="{{ uzivatel.nick }}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="zmena_udaju_form_jmeno">Jméno: *</label>
+                <input type="text" name="uzivatel[jmeno]" id="zmena_udaju_form_jmeno" class="form-control" placeholder="Jméno" value="{{ uzivatel.jmeno }}" required>
+            </div>
+            <div class="form-group">
+                <label for="zmena_udaju_form_prijmeni">Příjmení: *</label>
+                <input type="text" name="uzivatel[prijmeni]" id="zmena_udaju_form_prijmeni" class="form-control" placeholder="Příjmení" value="{{ uzivatel.prijmeni }}" required>
+            </div>
+            <div class="form-group">
+                <label for="zmena_udaju_form_email">Email: *</label>
+                <input type="email" name="uzivatel[email]" id="zmena_udaju_form_email" class="form-control" placeholder="Email" value="{{ uzivatel.email }}" required>
+            </div>
+            <div class="form-group">
+                <label for="opravneni">Oprávnění</label>
+                <select name="uzivatel[role]" id="opravneni" class="form-control" required>
+                    {% for role in roles %}
+                        <option value="{{ role.id }}" {% if uzivatel.role_id == role.id %}selected{% endif %}>{{ role.nazev }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-6 user-form-btn" align="center">
+                <button type="submit" class="btn btn-default">
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>  Uložit změny
+                </button>
+            </div>
+            <div class="col-md-6 user-form-btn" align="center">
+                <a id="smazat_uzivatele" class="btn btn-danger" href="{{ makeURL('administrace:smazatuzivatele:') }}{{ uzivatel.nick }}">
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>  Smazat uživatele
+                </a>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-6 col-xs-12">
+        <form id="password-form" action="{{ makeURL('administrace:zmenitheslo') }}" method="post">
+            <input type="hidden" name="uzivatel[nick]" value="{{ uzivatel.nick }}">
+            <input type="hidden" name="uzivatel[heslo]" id="passh">
+            <div class="form-group">
+                <label for="password">Heslo: *</label>
+                <input type="password" id="password" name="pass" class="form-control" placeholder="Heslo" required>
+            </div>
+            <div class="form-group">
+                <label for="password-check">Potvrzení hesla: *</label>
+                <input type="password" name="pass2" id="password-check" class="form-control" placeholder="Potvrdit heslo" required>
+            </div>
+            <input type="submit" id="change-pass" class="btn btn-default" value="Změnit heslo">
+        </form>
+    </div>
+    <div class="bottom_nav col-md-12">
+        <a href="{{ makeURL('administrace:uzivatele') }}"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>  Zpět</a>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script type="text/javascript" src="http://cryptojs.altervista.org/api/functions_cryptography.js"></script>
+    <script>
+        var Crypt = new Crypt();
+        $(document).ready(function () {
+            $('#change-pass').click(function () {
+                var heslo = $("#password-form").find("input[name=pass]");
+                var passh = Crypt.HASH.sha1(heslo.val());
+                $("#passh").val(passh.toString());
+                return true;
+            });
+            $('#smazat_uzivatele').click(function () {
+                return confirm('Opravdu chcete tohoto uživatele smazat?');
+            });
+            var min_pass = 8;
+            $("#zmena_udaju_form").validate({
+                rules: {
+                    'uzivatel[jmeno]': 'required',
+                    'uzivatel[prijmeni]': 'required',
+                    'uzivatel[email]': 'required',
+                    'uzivatel[role]': 'required'
+                }
+            });
+            $("#password-form").validate({
+                rules: {
+                    pass: {
+                        required: true,
+                        minlength: min_pass
+                    },
+                    pass2: {
+                        required: true,
+                        equalTo: "#password"
+                    }
+                },
+                messages: {
+                    pass: {
+                        minlength: function () {
+                            return [
+                                'Zbývá napsat ' + (min_pass - parseInt($('#password').val().length)) +
+                                ' znaků.'];
+
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends '/_templates/_base.twig' %}
+{% block title %}Přihlášení{% endblock %}
+{% block content %}
+    <div class="nazev_stranky col-md-12" align="center">
+        <h2>Přihlášení</h2>
+    </div>
+    <div class="col-md-6 col-md-offset-3 col-xs-12">
+        <form id="signin-form" action="{{ makeURL('sign:prihlasovani') }}" method="POST">
+            <div class="form-group">
+                <label for="nickname">Nickname:</label>
+                <input type="text" id="nickname" class="form-control" name="uzivatel[nick]" placeholder="Nickname" required>
+            </div>
+            <div class="form-group">
+                <label for="heslo">Heslo:</label>
+                <input type="password" id="heslo" class="form-control" name="heslo" placeholder="Heslo" required>
+            </div>
+            <input type="hidden" class="form-control" name="uzivatel[heslo]" id="passh">
+            <input type="submit" class="btn btn-default" value="Přihlásit" id="signin-btn">
+        </form>
+    </div>
+    <div class="col-md-6 col-md-offset-3 col-xs-12 text-center create_acc">
+        <a href="{{ makeURL('sign:registrace') }}">Vytvořit účet</a>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script type="text/javascript" src="http://cryptojs.altervista.org/api/functions_cryptography.js"></script>
+    <script>
+        var Crypt = new Crypt();
+        $(document).ready(function () {
+            $('#signin-btn').click(function () {
+                var heslo = $("#signin-form").find("input[name=heslo]");
+                var passh = Crypt.HASH.sha1(heslo.val());
+                $("#passh").val(passh.toString());
+            });
+            $("#signin-form").validate({
+                lang: 'cs',
+                rules: {
+                    'uzivatel[nick]': "required",
+                    heslo: "required"
+                }
+            });
+        });
+    </script>
+{% endblock %}

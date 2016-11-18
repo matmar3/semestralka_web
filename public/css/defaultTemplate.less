@@ -1,0 +1,204 @@
+@modra: #002040;
+@cervena: #B9151C;
+@bila: #fff;
+/*----------------------- _base css --------------------------------*/
+html, body {
+  height: 100%;
+}
+a {
+  color: @modra;
+}
+a:hover {
+  color: @cervena;
+}
+
+.flash {
+  position: absolute;
+  top: 10%;
+  left:50%;
+  margin-left: -250px;
+  width: 500px;
+  min-height: 1em;
+  z-index: 1000;
+}
+@media only screen and (max-width: 480px) {
+  .flash {
+    margin-left: -150px !important;
+    width: 300px !important;
+  }
+}
+
+#banner {
+  width: 100%;
+  height: 250px;
+}
+
+#banner .vcenter {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  h1 {
+    margin-bottom: 0;
+  }
+  div {
+    padding: 10px;
+  }
+}
+
+.banner-frontend {
+  position: relative;
+  z-index: 5;
+}
+
+.banner-backend {
+  position: absolute;
+  top:0;
+  left: 0;
+  z-index: 1;
+  background-color: black;
+  opacity: 0.5;
+  width: 100%;
+  height: 250px;
+}
+
+#menu {
+  background-color: @cervena !important;
+  background-image: none;
+  a,.blog-nav-item {
+    color: @bila;
+    padding: 14px 20px;
+    border: 1px @cervena solid;
+    font-size: 16px;
+    &:hover {
+      color: @modra;
+      background-color: @bila;
+    }
+  }
+  #mobile-menu-btn {
+    color: @bila;
+    background-color: transparent;
+    .icon-bar {
+      background-color: @bila;
+    }
+    &:hover {
+      background-color: @modra;
+    }
+  }
+}
+
+// snaha rusit soudou barvu pri open nav
+#user-btn, #user-btn a {
+  background-image: none !important;
+}
+.nav .open > a {
+  background-color: @bila;
+  color: @modra;
+}
+#user-btn {
+  &:hover {
+    background-color: @bila;
+  }
+  ul {
+    background-color: #B9151C;
+    padding: 0;
+    li a:hover {
+      color: @modra;
+      background-color: @bila;
+      background-image: none !important;
+    }
+  }
+}
+// hlavní wrapper
+#wrap {
+  min-height: 65%;
+  #main {
+    overflow:auto;
+    padding-bottom:150px;
+  }
+}
+.disabled-link {
+  pointer-events: none;
+  cursor: none;
+}
+
+/* forms css */
+label.error {
+  color: @cervena;
+}
+
+/* tables */
+@-moz-document url-prefix() {
+  fieldset {
+    display: table-cell;
+  }
+}
+
+/* Footer */
+footer {
+  position: relative;
+  margin-top: -100px;
+  height: 100px;
+  clear:both;
+  padding: 20px 0 40px 0;
+  text-align: center;
+  background-color: #f9f9f9;
+  border-top: 1px solid #e5e5e5;
+}
+footer p:last-child {
+  margin-bottom: 0;
+}
+
+
+/* vse */
+.nazev_stranky {
+  font-size: 25px;
+  margin-bottom: 30px;
+}
+#administrace_navbar {
+  margin-bottom: 80px;
+}
+.informace {
+  font-size: 16px;
+}
+.bottom_nav {
+  margin: 30px 0;
+}
+/*------------------------- home/kontakt ----------------------------*/
+#mapa {
+  margin: 40px 0;
+  iframe {
+    width: 100%;
+  }
+}
+
+/*------------------------- home/kriteria ---------------------------*/
+#kriteria {
+  ul {
+    padding-bottom: 10px;
+  }
+}
+
+/*------------------------- sign/registrace --------------------------*/
+.povinny_udaj_info {
+  padding: 20px 0;
+}
+.create_acc {
+  padding: 30px 0 30px 0;
+}
+
+/*------------------------- administrace/detailuzivatele --------------------------*/
+.user-form-btn {
+  padding-bottom: 20px;
+}
+
+/*------------------------ error/index -------------------------*/
+.error-code {
+  font-size: 80px;
+}
+.error-info {
+  padding-top: 5%;
+}

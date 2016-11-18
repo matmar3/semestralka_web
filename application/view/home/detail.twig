@@ -1,0 +1,48 @@
+{% extends '/_templates/_base.twig' %}
+{% block title %}{{ prispevek.nazev }}{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{{ constant('URL') }}css/blog.css">
+{% endblock %}
+{% block content %}
+
+    <div class="row">
+        <div class="col-sm-7 blog-main">
+            <div class="blog-post">
+                <h1 class="post-title">
+                    <a href="{{ makeURL('home:detail:') }}{{ prispevek.id }}">{{ prispevek.nazev }}</a>
+                </h1>
+                <p class="blog-post-description">{{ prispevek.obsah|raw }}</p>
+                <p class="blog-post-meta"><strong>Autor: {{ prispevek.jmeno }} {{ prispevek.prijmeni }}</strong> | {{ prispevek.cas_vytvoreni|date("d.m.Y \\v H:i") }}</p>
+                {% if prispevek.priloha_url is not empty %}<a href="{{ prispevek.priloha_url }}" download>Stáhnout</a>{% endif %}
+            </div><!-- /.blog-post -->
+        </div><!-- /.blog-main -->
+        <div class="col-sm-4 col-sm-offset-1 blog-sidebar">
+            <div class="sidebar-module sidebar-module-inset">
+                <h4>O nás</h4>
+                <p>
+                    Jsme centrem vědecké excelence v oblasti věd o živé přírodě a pokročilých materiálů a
+                    technologií, naším hlavním posláním je vybudování významného evropského střediska vědy
+                    a vzdělanosti se špičkovým zázemím a podmínkami pro nejlepší vědecké pracovníky v Plzni.
+            </div>
+            <div class="sidebar-module sidebar-module-inset">
+                <h4><a href="{{ makeURL('home:kontakt') }}">Kontakt</a></h4>
+                ČESKÝ TECHNOLOGICKÝ INSTITUT <br>
+                <br>
+                Západočeská univerzita <br>
+                Univerzitní 2732/8, <br>
+                306 14 Plzeň 3 <br>
+                Česká republika <br>
+                <br>
+                E-mail:	info&#64;cetein.cz <br>
+                Tel:	+420&nbsp;421&nbsp;520&nbsp;123
+            </div>
+            <div class="sidebar-module sidebar-module-inset">
+                <h4><a href="{{ makeURL('home:terminy') }}">Důležité termíny</a></h4>
+                <ol class="list-unstyled">
+                    <li>Konání konference: 4. - 8. 3. 2017</li>
+                </ol>
+            </div>
+        </div><!-- /.blog-sidebar -->
+    </div><!-- /.row -->
+
+{% endblock %}

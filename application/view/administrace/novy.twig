@@ -1,0 +1,57 @@
+{% extends '/_templates/_base.twig' %}
+{% block title %}Nový příspěvek{% endblock %}
+{% block content %}
+    <div class="nazev_stranky col-md-12">
+        <h2>Nový příspěvek</h2>
+    </div>
+    <div class="col-md-8 col-md-offset-2 col-xs-12">
+        <form id="pridat_prispevek" action="{{ makeURL('administrace:pridatprispevek') }}" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="pridat_prispevek_nazev">Název příspěvku: *</label>
+                <input id="pridat_prispevek_nazev" class="form-control" type="text" placeholder="Název příspěvku" name="prispevek[nazev]">
+            </div>
+            <div class="form-group">
+                <label for="pridat_prispevek_obsah">Abstrakt: *</label>
+                <textarea id="pridat_prispevek_obsah" class="form-control" name="prispevek[obsah]" placeholder="Abstrakt" cols="30" rows="10"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="pridat_prispevek_priloha">Příloha:</label>
+                <input id="pridat_prispevek_priloha" type="file" placeholder="PDF soubor" name="priloha">
+                <p class="help-block">Pouze příloha ve formátu (.pdf)</p>
+            </div>
+            <input type="submit" class="btn btn-success" value="Přidat">
+            <div class="form-group">
+                <p class="help-block povinny_udaj_info">* Tento údaj je povinný.</p>
+            </div>
+        </form>
+    </div>
+    <div class="bottom_nav col-md-12">
+        <a href="{{ makeURL('administrace:prispevky') }}"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>  Zpět</a>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        $(document).ready(function () {
+            var minChar = 150;
+            $("#pridat_prispevek").validate({
+                rules: {
+                    'prispevek[nazev]': "required",
+                    'prispevek[obsah]': {
+                        required: true,
+                        minlength: minChar
+                    }
+                },
+                messages: {
+                    'prispevek[obsah]': {
+                        minlength: function () {
+                            return [
+                                'Zbývá napsat ' + (minChar - parseInt($('#pridat_prispevek_obsah').val().length)) +
+                                ' znaků.'];
+
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+{% endblock %}

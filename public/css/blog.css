@@ -1,0 +1,69 @@
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+  font-weight: normal;
+  color: #002040;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 970px;
+  }
+}
+
+/*
+ * Blog posts
+ */
+.blog-post {
+  margin: 30px 0;
+}
+.blog-post-author,.blog-post-meta {
+  font-size: 13px;
+  color: #7e7e7e;
+}
+.blog-post-author {
+  margin: 0;
+}
+.blog-post-meta strong {
+  color: #333;
+}
+.blog-post-title {
+  margin: 0;
+  text-decoration: underline;
+}
+.post-title {
+  text-decoration: underline;
+}
+.blog-post-title a {
+  color: #002040;
+}
+.blog-post-title a:hover {
+   color: #B9151C;
+}
+.blog-post-description {
+  margin: 10px 0;
+  font-size: 16px;
+}
+.blog-post-description p {
+  text-align: justify;
+  text-indent: 25px;
+}
+
+/* Sidebar modules for boxing content */
+.sidebar-module {
+  padding: 15px;
+  margin: 0 -15px 15px;
+}
+.sidebar-module-inset {
+  padding: 15px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+}
+.sidebar-module-inset p:last-child,
+.sidebar-module-inset ul:last-child,
+.sidebar-module-inset ol:last-child {
+  margin-bottom: 0;
+}

@@ -1,0 +1,61 @@
+{% extends '/_templates/_base.twig' %}
+{% block title %}Příspěvky{% endblock %}
+{% block content %}
+    <div class="nazev_stranky col-md-12">
+        <h2>Příspěvky</h2>
+    </div>
+    <div class="col-md-12 table-responsive">
+        <table class="vypis_prispevku table table-hover">
+            <thead>
+                <tr>
+                    <th class="text-center">Název</th>
+                    <th class="text-center">Stav</th>
+                    <th class="text-center">Známka</th>
+                    <th class="text-center"></th>
+                    <th class="text-center"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for prispevek in prispevky %}
+                    <tr>
+                        <td class="text-center">{{ prispevek.nazev }}</td>
+                        <td class="text-center">{{ prispevek.stav }}</td>
+                        <td class="text-center">
+                            {% if prispevek.hodnoceni is not null and prispevek.stav != 'recenzován' %}
+                                {{ prispevek.hodnoceni|slice(0,4) }}
+                            {% else %}
+                                -
+                            {% endif %}
+                        </td>
+                        <td class="text-center">
+                            {% if prispevek.stav != 'přijat' %}
+                                <a href="{{ makeURL('administrace:upravitprispevek:') }}{{ prispevek.id }}">
+                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>  upravit
+                                </a>
+                            {% endif %}
+                        </td>
+                        <td class="text-center">
+                            {% if prispevek.stav != 'přijat' %}
+                                <a class="smazat-prispevek" href="{{ makeURL('administrace:smazatprispevek:') }}{{ prispevek.id }}">
+                                    <abbr title="Smazat příspěvek"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></abbr>
+                                </a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-12">
+        <a href="{{ makeURL('administrace:novyprispevek') }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>  Nový příspěvek</a>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        $(document).ready(function () {
+            $('.smazat-prispevek').click(function () {
+               return confirm('Přejete si smazat příspěvek?');
+            });
+        });
+    </script>
+{% endblock %}

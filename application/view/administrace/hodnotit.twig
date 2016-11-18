@@ -1,0 +1,63 @@
+{% extends '/_templates/_base.twig' %}
+{% block title %}Hodnocení{% endblock %}
+{% block content %}
+    <div class="nazev_stranky col-md-12">
+        <h2>Hodnocení</h2>
+        <p class="informace">
+            Název příspěvku: <a href="{{ makeURL('home:detail:') }}{{ recenze.pid }}" target="_blank">{{ recenze.nazev }}</a>
+        </p>
+    </div>
+    <div class="col-md-8 col-md-offset-2 col-xs-12">
+        <form action="{{ makeURL('administrace:ohodnotitprispevek:') }}{{ recenze.id }}" method="post">
+            <div class="form-group">
+                <label for="hodnoceni_vzhled">Vzhled, první dojem: *</label>
+                <select name="hodnoceni[vzhled]" class="form-control" id="hodnoceni_vzhled" required>
+                    <option value="1" {% if recenze.vzhled == 1 %}selected{% endif %}>Hezký</option>
+                    <option value="2" {% if recenze.vzhled == 2 %}selected{% endif %}>Přehledný</option>
+                    <option value="3" {% if recenze.vzhled == 3 %}selected{% endif %}>Ujde to</option>
+                    <option value="4" {% if recenze.vzhled == 4 %}selected{% endif %}>Nepřehledný</option>
+                    <option value="5" {% if recenze.vzhled == 5 %}selected{% endif %}>Naprosto chaotický</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="hodnoceni_srozumitelnost">Srozumitelnost: *</label>
+                <select name="hodnoceni[srozumitelnost]" class="form-control" id="hodnoceni_srozumitelnost" required>
+                    <option value="1" {% if recenze.srozumitelnost == 1 %}selected{% endif %}>Výborná</option>
+                    <option value="2" {% if recenze.srozumitelnost == 2 %}selected{% endif %}>Celkem srozumitelné</option>
+                    <option value="3" {% if recenze.srozumitelnost == 3 %}selected{% endif %}>Některé věty je těžké pochopit</option>
+                    <option value="4" {% if recenze.srozumitelnost == 4 %}selected{% endif %}>Moc tomu nerozumím</option>
+                    <option value="5" {% if recenze.srozumitelnost == 5 %}selected{% endif %}>Věty vůbec nedávají smysl</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="hodnoceni_pravopis">Pravopis: *</label>
+                <select name="hodnoceni[pravopis]" class="form-control" id="hodnoceni_pravopis" required>
+                    <option value="1" {% if recenze.pravopis == 1 %}selected{% endif %}>Bezchybný</option>
+                    <option value="2" {% if recenze.pravopis == 2 %}selected{% endif %}>Lehce nadprůměrný</option>
+                    <option value="3" {% if recenze.pravopis == 3 %}selected{% endif %}>Není to špatné</option>
+                    <option value="4" {% if recenze.pravopis == 4 %}selected{% endif %}>Nic moc</option>
+                    <option value="5" {% if recenze.pravopis == 5 %}selected{% endif %}>Otřesný</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="hodnoceni_rozsah">Rozsah: *</label>
+                <select name="hodnoceni[rozsah]" class="form-control" id="hodnoceni_rozsah" required>
+                    <option value="4" {% if recenze.rozsah == 4 %}selected{% endif %}>Nekončící</option>
+                    <option value="3" {% if recenze.rozsah == 3 %}selected{% endif %}>Dlouhý</option>
+                    <option value="2" {% if recenze.rozsah == 2 %}selected{% endif %}>Trochu delší</option>
+                    <option value="1" {% if recenze.rozsah == 1 %}selected{% endif %}>Ideální</option>
+                    <option value="2" {% if recenze.rozsah == 2 %}selected{% endif %}>Trochu kratší</option>
+                    <option value="3" {% if recenze.rozsah == 3 %}selected{% endif %}>Moc krátký</option>
+                    <option value="4" {% if recenze.rozsah == 4 %}selected{% endif %}>Bez textu</option>
+                </select>
+            </div>
+            <input type="submit" class="btn btn-default" value="Ohodnotit">
+            <div class="form-group">
+                <p class="help-block povinny_udaj_info">* Tento údaj je povinný.</p>
+            </div>
+        </form>
+    </div>
+    <div class="bottom_nav col-md-12">
+        <a href="{{ makeURL('administrace:krecenzi') }}"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>  Zpět</a>
+    </div>
+{% endblock %}

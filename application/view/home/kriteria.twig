@@ -1,0 +1,68 @@
+{% extends '/_templates/_base.twig' %}
+{% block title %}Úvod{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="{{ constant('URL') }}css/blog.css">
+{% endblock %}
+{% block content %}
+    <div class="row">
+
+        <div class="col-sm-7 blog-main">
+            <div id="kriteria" class="col-md-12">
+                <h3>Kritéria pro vydávané příspěvky</h3>
+                <h4>Jazyk příspěvků</h4>
+                <ul>
+                    <li>Příspěvky mohou být psány v českém nebo anglickém jazyce.</li>
+                </ul>
+                <h4>Rozsah příspěvků</h4>
+                <ul>
+                    <li>Minimální povolený obsah je 150 znaků.</li>
+                </ul>
+                <h4>Formát příspěvků</h4>
+                <ul>
+                    <li>Příspěvek je z důvodu lepší čitelnosti možné psát formou HTML.</li>
+                    <li>Dodržujte prosím typografická pravidla.</li>
+                </ul>
+                <h4>Přílohy</h4>
+                <ul>
+                    <li>Ke každému příspěvku lze přiložit jednu přílohu ve formátu PDF.</li>
+                    <li>Velikost přílohy je omezena na 5 Mb.</li>
+                </ul>
+                <h4>Tvorba příspěvků</h4>
+                <ul>
+                    <li>Pro tvorbu příspěvků musíte být zaregistrován. Pokud ještě nemáte účet, registruje se prosím <a
+                                href="{{ makeURL('sign:registrace') }}">zde</a>.</li>
+                    <li>Každý vytvořený příspěvek bude nejprve recenzován, pokud bude schválen, bude zobrazen na webových stránkách.</li>
+                </ul>
+            </div>
+        </div><!-- /.blog-main -->
+
+        <div class="col-sm-4 col-sm-offset-1 blog-sidebar">
+            <div class="sidebar-module sidebar-module-inset">
+                <h4>O nás</h4>
+                <p>
+                    Jsme centrem vědecké excelence v oblasti věd o živé přírodě a pokročilých materiálů a
+                    technologií, naším hlavním posláním je vybudování významného evropského střediska vědy
+                    a vzdělanosti se špičkovým zázemím a podmínkami pro nejlepší vědecké pracovníky v Plzni.
+            </div>
+            <div class="sidebar-module sidebar-module-inset">
+                <h4><a href="{{ makeURL('home:kontakt') }}">Kontakt</a></h4>
+                ČESKÝ TECHNOLOGICKÝ INSTITUT <br>
+                <br>
+                Západočeská univerzita <br>
+                Univerzitní 2732/8, <br>
+                306 14 Plzeň 3 <br>
+                Česká republika <br>
+                <br>
+                E-mail:	info&#64;cetein.cz <br>
+                Tel:	+420&nbsp;421&nbsp;520&nbsp;123
+            </div>
+            <div class="sidebar-module sidebar-module-inset">
+                <h4><a href="{{ makeURL('home:terminy') }}">Důležité termíny</a></h4>
+                <ol class="list-unstyled">
+                    <li>Konání konference: 4. - 8. 3. 2017</li>
+                </ol>
+            </div>
+        </div><!-- /.blog-sidebar -->
+
+    </div><!-- /.row -->
+{% endblock %}

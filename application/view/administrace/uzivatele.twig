@@ -1,0 +1,41 @@
+{% extends '/_templates/_base.twig' %}
+{% block title %}Uživatelé{% endblock %}
+{% block content %}
+    <div class="nazev_stranky col-md-12">
+        <h2>Uživatelé</h2>
+    </div>
+    <div class="col-md-12 table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Nick</th>
+                    <th>Jméno</th>
+                    <th>Příjmení</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in uzivatele %}
+                    <tr class="link" data-href="{{ makeURL('administrace:detailuzivatele:') }}{{ user.nick }}">
+                        <td>{{ user.nick }}</td>
+                        <td>{{ user.jmeno }}</td>
+                        <td>{{ user.prijmeni }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.nazev }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        $(document).ready(function(){
+            $('table tr.link').click(function(){
+                    window.location = $(this).attr('data-href');
+                    return false;
+            });
+        });
+    </script>
+{% endblock %}

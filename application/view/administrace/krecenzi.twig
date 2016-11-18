@@ -1,0 +1,36 @@
+{% extends '/_templates/_base.twig' %}
+{% block title %}Příspěvky k  recenzi{% endblock %}
+{% block content %}
+    <div class="nazev_stranky col-md-12">
+        <h2>Příspěvky k recenzi</h2>
+    </div>
+    <div class="col-md-12 table-responsive">
+        <table class="vypis_prispevku_k_recenzi table table-hover">
+            <thead>
+                <tr>
+                    <th class="text-center">Název příspěvku</th>
+                    <th class="text-center">Tvé hodnocení</th>
+                    <th class="text-center">Stav</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in recenze %}
+                    <tr {% if item.stav == 'recenzován' %}class="link" data-href="{{ makeURL('administrace:hodnotit:') }}{{ item.id }}"{% else %}class="danger"{% endif %}>
+                        <td class="text-center">{{ item.nazev }}</td>
+                        <td class="text-center">{{ item.mezisoucet }}</td>
+                        <td class="text-center">{{ item.stav }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        $(document).ready(function(){
+            $('table tr.link').click(function(){
+                window.location = $(this).attr('data-href');
+            });
+        });
+    </script>
+{% endblock %}

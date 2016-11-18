@@ -1,0 +1,65 @@
+{% extends '/_templates/_base.twig' %}
+{% block title %}Upravit příspěvek{% endblock %}
+{% block content %}
+    <div class="nazev_stranky col-md-12">
+        <h2>Upravit příspěvek</h2>
+        <small>nazev: {{ prispevek.nazev }}</small>
+    </div>
+    <div class="col-md-8 col-md-offset-2 col-xs-12">
+        <form id="upravit_prispevek" action="{{ makeURL('administrace:zmenitprispevek') }}" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="prispevek[id]" value="{{ prispevek.id }}">
+            <input type="hidden" name="prispevek[last_file]" value="{{ prispevek.priloha_url }}">
+            <div class="form-group">
+                <label for="upravit_prispevek_nazev">Název příspěvku: *</label>
+                <input id="upravit_prispevek_nazev" type="text" class="form-control" placeholder="Název příspěvku" value="{{ prispevek.nazev }}" name="prispevek[nazev]" required>
+            </div>
+            <div class="form-group">
+                <label for="upravit_prispevek_obsah">Abstrakt: *</label>
+                <textarea id="upravit_prispevek_obsah" name="prispevek[obsah]" class="form-control" placeholder="Abstrakt" cols="30" rows="10" required>{{ prispevek.obsah }}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="upravit_prispevek_priloha">Příloha:</label>
+                <input id="upravit_prispevek_priloha" type="file" placeholder="PDF soubor" name="priloha">
+                <p class="help-block">Pouze příloha ve formátu (.pdf)
+                    <br>
+                    <a href="{{ prispevek.priloha_url }}" download>Současná</a> příloha
+                </p>
+            </div>
+            <button type="submit" class="btn btn-primary">
+                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>  Uložit úpravy
+            </button>
+            <div class="form-group">
+                <p class="help-block povinny_udaj_info">* Tento údaj je povinný.</p>
+            </div>
+        </form>
+    </div>
+    <div class="bottom_nav col-md-12">
+        <a href="{{ makeURL('administrace:prispevky') }}"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>  Zpět</a>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        $(document).ready(function () {
+            var minChar = 150;
+            $("#upravit_prispevek").validate({
+                rules: {
+                    'prispevek[nazev]': "required",
+                    'prispevek[obsah]': {
+                        required: true,
+                        minlength: minChar
+                    }
+                },
+                messages: {
+                    'prispevek[obsah]': {
+                        minlength: function () {
+                            return [
+                                'Zbývá napsat ' + (minChar - parseInt($('#upravit_prispevek_obsah').val().length)) +
+                                ' znaků.'];
+
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+{% endblock %}

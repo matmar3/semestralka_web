@@ -1,0 +1,70 @@
+{% extends '/_templates/_base.twig' %}
+{% block title %}Správa recenzí{% endblock %}
+{% block content %}
+    <div class="nazev_stranky col-md-12">
+        <h2>Správa recenzí</h2>
+    </div>
+    <div class="col-md-12 table-responsive">
+        <table class="vypis_recenzi table table-hover">
+            <thead>
+                <tr>
+                    <th>Název</th>
+                    <th>Autor</th>
+                    <th class="text-center">Počet recenzentů</th>
+                    <th class="text-center">Celkové Hodnocení</th>
+                    <th class="text-center">Akce</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for prispevek in prispevky %}
+                    {% if prispevek.nazev is not null %}
+                        <tr class="link" data-href="{{ makeURL('administrace:spravarecenzentu:') }}{{ prispevek.id }}">
+                            <td>{{ prispevek.nazev }}</td>
+                            <td>{{ prispevek.uzivatele_nick }}</td>
+                            <td class="text-center">{{ prispevek.recenzentu }}</td>
+                            <td class="text-center">
+                                <!-- dostatečný počet recenzentů -->
+                                {% if prispevek.kontrola >= min_recenzentu and prispevek.celkem is not null %}
+                                    {{ prispevek.celkem|slice(0,4) }}
+                                {% else %}
+                                    Nedostupné
+                                {% endif %}
+                            </td>
+                            <td class="text-center">
+                                <!-- dostatečný počet recenzentů -->
+                                {% if prispevek.kontrola >=  min_recenzentu and prispevek.celkem is not null %}
+                                    <a href="{{ makeURL('administrace:prijmoutprispevek:') }}{{ prispevek.id }}">Přijmout</a>
+                                    /
+                                    <a class="zamitnout_recenzi" href="{{ makeURL('administrace:zamitnoutprispevek:') }}{{ prispevek.id }}">Zamítnout</a>
+                                {% else %}
+                                    -
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="5" class="text-center">ŽÁDNÉ PŘÍSPĚVKY K RECENZI</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        $(document).ready(function(){
+            $('table tr.link').click(function(e){
+                if(e.target.nodeName != 'A'){
+                    window.location = $(this).attr('data-href');
+                    return false;
+                } else {
+                    return true;
+                }
+            });
+            $('.zamitnout_recenzi').click(function () {
+                return confirm('Opravdu chcete zamítnout recenzi?');
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends '/_templates/_base.twig' %}
+{% block title %}Přidělení recenzentů{% endblock %}
+{% block content %}
+    <div class="nazev_stranky col-md-12">
+        <h2>Přidělení recenzentů</h2>
+    </div>
+    <div id="prideleni_recenzentu" class="col-md-4 col-xs-12">
+        <form action="{{ makeURL('administrace:priraditrecenzenty') }}" method="post">
+            <input type="hidden" name="id" value="{{ clanek_id }}">
+            <div class="form-group">
+                <label for="recenzenti">Možní recenzenti: </label>
+                <select name="recenzenti[]" id="recenzenti" class="form-control" multiple>
+                    {% for recenzent in recenzenti %}
+                        <option value="{{ recenzent.nick }}">{{ recenzent.nick }}({{ recenzent.jmeno }} {{ recenzent.prijmeni }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-default">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Přidělit
+            </button>
+        </form>
+    </div>
+    <div class="col-md-12">
+        <hr>
+    </div>
+    <div class="col-md-12 table-responsive">
+        <table id="vypis_recenzi" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Recenzent</th>
+                    <th>Celkové hodnocení</th>
+                    <th>Datum</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in recenze %}
+                    <tr>
+                        <td>{{ item.uzivatele_nick }}</td>
+                        <td>{{ item.mezisoucet }}</td>
+                        <td>{{ item.cas_hodnoceni|date('d.m.Y') }}</td>
+                        <td>
+                            <a class="odebrat_recenzenta" href="{{ makeURL('administrace:odebratrecenzenta:') }}{{ item.id }}">
+                                Odebrat
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="bottom_nav col-md-12">
+        <a href="{{ makeURL('administrace:spravarecenzi') }}"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Zpět</a>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script>
+        $(document).ready(function () {
+            $('.odebrat_recenzenta').click(function () {
+                return confirm('Opravdu chcete odebrat recenzenta?');
+            });
+        });
+    </script>
+{% endblock %}
