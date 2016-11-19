@@ -1,7 +1,7 @@
 {% extends '/_templates/_base.twig' %}
 {% block title %}Přidělení recenzentů{% endblock %}
 {% block content %}
-    <div class="nazev_stranky col-md-12">
+    <div class="nazev_stranky col-md-12 col-xs-12">
         <h2>Přidělení recenzentů</h2>
     </div>
     <div id="prideleni_recenzentu" class="col-md-4 col-xs-12">
@@ -20,10 +20,10 @@
             </button>
         </form>
     </div>
-    <div class="col-md-12">
+    <div class="col-md-12 col-xs-12">
         <hr>
     </div>
-    <div class="col-md-12 table-responsive">
+    <div class="col-md-12 col-xs-12 table-responsive">
         <table id="vypis_recenzi" class="table table-hover">
             <thead>
                 <tr>
@@ -49,7 +49,7 @@
             </tbody>
         </table>
     </div>
-    <div class="bottom_nav col-md-12">
+    <div class="bottom_nav col-md-12 col-xs-12">
         <a href="{{ makeURL('administrace:spravarecenzi') }}"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Zpět</a>
     </div>
 {% endblock %}

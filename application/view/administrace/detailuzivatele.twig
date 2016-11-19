@@ -1,7 +1,7 @@
 {% extends '/_templates/_base.twig' %}
 {% block title %}Uživatelé{% endblock %}
 {% block content %}
-    <div class="nazev_stranky col-md-12">
+    <div class="nazev_stranky col-md-12 col-xs-12">
         <h2>Detail uživatele: <small>{{ uzivatel.jmeno }} {{ uzivatel.prijmeni }}</small></h2>
     </div>
     <div class="col-md-6 col-xs-12">
@@ -30,12 +30,12 @@
                     {% endfor %}
                 </select>
             </div>
-            <div class="col-md-6 user-form-btn" align="center">
+            <div class="col-md-6 col-xs-12 user-form-btn" align="center">
                 <button type="submit" class="btn btn-default">
                     <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>  Uložit změny
                 </button>
             </div>
-            <div class="col-md-6 user-form-btn" align="center">
+            <div class="col-md-6 col-xs-12 user-form-btn" align="center">
                 <a id="smazat_uzivatele" class="btn btn-danger" href="{{ makeURL('administrace:smazatuzivatele:') }}{{ uzivatel.nick }}">
                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>  Smazat uživatele
                 </a>
@@ -57,7 +57,7 @@
             <input type="submit" id="change-pass" class="btn btn-default" value="Změnit heslo">
         </form>
     </div>
-    <div class="bottom_nav col-md-12">
+    <div class="bottom_nav col-md-12 col-xs-12">
         <a href="{{ makeURL('administrace:uzivatele') }}"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>  Zpět</a>
     </div>
 {% endblock %}

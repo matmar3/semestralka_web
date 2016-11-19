@@ -15,7 +15,7 @@ use Mini\Core\Model;
  * Class UserManager
  * @package Mini\Model
  *
- * Model zajišťuje komunikaci s databází hlavně s tabulkou uzivatele a role
+ * Model zajišťuje komunikaci s databází hlavně s tabulkou uzivatele a role.
  */
 class UserManager extends Model
 {

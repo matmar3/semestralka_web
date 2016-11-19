@@ -18,7 +18,7 @@ use Mini\Model\Uzivatel;
  * Class AdministraceController
  * @package Mini\Controller
  *
- * Třída zajišťuje vykreslování správných podstránek, komunikaci mezi modelem Recenze a UserManager, kontrolu oprávnění
+ * Třída zajišťuje vykreslování správných podstránek, komunikaci mezi modelem Recenze a UserManager, kontrolu oprávnění.
  */
 class AdministraceController extends Controller
 {

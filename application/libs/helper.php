@@ -2,6 +2,13 @@
 
 namespace Mini\Libs;
 
+
+/**
+ * Class Helper
+ * @package Mini\Libs
+ *
+ * Třída slouží jako pomocný nástroj při ladění chyb.
+ */
 class Helper
 {
     /**

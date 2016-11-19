@@ -11,6 +11,12 @@
 
 namespace Mini\Controller;
 
+/**
+ * Class ErrorController
+ * @package Mini\Controller
+ *
+ * Třída slouží k zobrazení chybových stránek, pokud k nějaké chybě dojde.
+ */
 class ErrorController extends Controller
 {
     /**

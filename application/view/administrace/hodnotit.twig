@@ -1,7 +1,7 @@
 {% extends '/_templates/_base.twig' %}
 {% block title %}Hodnocení{% endblock %}
 {% block content %}
-    <div class="nazev_stranky col-md-12">
+    <div class="nazev_stranky col-md-12 col-xs-12">
         <h2>Hodnocení</h2>
         <p class="informace">
             Název příspěvku: <a href="{{ makeURL('home:detail:') }}{{ recenze.pid }}" target="_blank">{{ recenze.nazev }}</a>
@@ -57,7 +57,7 @@
             </div>
         </form>
     </div>
-    <div class="bottom_nav col-md-12">
+    <div class="bottom_nav col-md-12 col-xs-12">
         <a href="{{ makeURL('administrace:krecenzi') }}"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>  Zpět</a>
     </div>
 {% endblock %}

@@ -16,7 +16,7 @@ use Mini\Core\Model;
  * Class Prispevky
  * @package Mini\Model
  *
- * Model slouží ke komunikaci převážně s tabulkou příspěvky
+ * Model slouží ke komunikaci převážně s tabulkou příspěvky.
  */
 class Prispevky extends Model
 {

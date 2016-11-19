@@ -8,7 +8,7 @@ use PDO;
  * Class Model
  * @package Mini\Core
  *
- * Třída slouží jako rodič pro ostatní modely, které od ní dědí připojení k databázi
+ * Třída slouží jako rodič pro ostatní modely, které od ní dědí připojení k databázi.
  */
 class Model
 {

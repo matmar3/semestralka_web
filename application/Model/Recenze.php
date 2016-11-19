@@ -15,7 +15,7 @@ use Mini\Core\Model;
  * Class Recenze
  * @package Mini\Model
  *
- * Model zajišťuje komunikaci s databází, převážně s tabulkou recenze a příspěvky
+ * Model zajišťuje komunikaci s databází, převážně s tabulkou recenze a příspěvky.
  */
 class Recenze extends Model
 {

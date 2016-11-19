@@ -1,10 +1,10 @@
 {% extends '/_templates/_base.twig' %}
 {% block title %}Příspěvky{% endblock %}
 {% block content %}
-    <div class="nazev_stranky col-md-12">
+    <div class="nazev_stranky col-md-12 col-xs-12">
         <h2>Příspěvky</h2>
     </div>
-    <div class="col-md-12 table-responsive">
+    <div class="col-md-12 col-xs-12 table-responsive">
         <table class="vypis_prispevku table table-hover">
             <thead>
                 <tr>
@@ -46,7 +46,7 @@
             </tbody>
         </table>
     </div>
-    <div class="col-md-12">
+    <div class="col-md-12 col-xs-12">
         <a href="{{ makeURL('administrace:novyprispevek') }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>  Nový příspěvek</a>
     </div>
 {% endblock %}

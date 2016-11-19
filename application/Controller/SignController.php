@@ -8,7 +8,6 @@
 
 namespace Mini\Controller;
 
-use Mini\Model\User;
 use Mini\Model\UserManager;
 use Mini\Model\Uzivatel;
 
@@ -17,7 +16,7 @@ use Mini\Model\Uzivatel;
  * @package Mini\Controller
  *
  * Třída zajišťuje vykreslování správných podstránek, komunikaci mezi modelem UserManager a User, přihlašování
- * a registraci uživatelů
+ * a registraci uživatelů.
  */
 class SignController extends Controller
 {

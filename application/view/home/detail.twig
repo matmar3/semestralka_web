@@ -6,7 +6,7 @@
 {% block content %}
 
     <div class="row">
-        <div class="col-sm-7 blog-main">
+        <div class="col-sm-7 col-xs-12 blog-main">
             <div class="blog-post">
                 <h1 class="post-title">
                     <a href="{{ makeURL('home:detail:') }}{{ prispevek.id }}">{{ prispevek.nazev }}</a>
@@ -16,7 +16,7 @@
                 {% if prispevek.priloha_url is not empty %}<a href="{{ prispevek.priloha_url }}" download>Stáhnout</a>{% endif %}
             </div><!-- /.blog-post -->
         </div><!-- /.blog-main -->
-        <div class="col-sm-4 col-sm-offset-1 blog-sidebar">
+        <div class="col-sm-4 col-sm-offset-1 col-xs-12 blog-sidebar">
             <div class="sidebar-module sidebar-module-inset">
                 <h4>O nás</h4>
                 <p>

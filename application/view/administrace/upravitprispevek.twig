@@ -1,7 +1,7 @@
 {% extends '/_templates/_base.twig' %}
 {% block title %}Upravit příspěvek{% endblock %}
 {% block content %}
-    <div class="nazev_stranky col-md-12">
+    <div class="nazev_stranky col-md-12 col-xs-12">
         <h2>Upravit příspěvek</h2>
         <small>nazev: {{ prispevek.nazev }}</small>
     </div>
@@ -21,8 +21,10 @@
                 <label for="upravit_prispevek_priloha">Příloha:</label>
                 <input id="upravit_prispevek_priloha" type="file" placeholder="PDF soubor" name="priloha">
                 <p class="help-block">Pouze příloha ve formátu (.pdf)
+                    {% if prispevek.priloha_url != '' %}
                     <br>
                     <a href="{{ prispevek.priloha_url }}" download>Současná</a> příloha
+                    {% endif %}
                 </p>
             </div>
             <button type="submit" class="btn btn-primary">
@@ -33,7 +35,7 @@
             </div>
         </form>
     </div>
-    <div class="bottom_nav col-md-12">
+    <div class="bottom_nav col-md-12 col-xs-12">
         <a href="{{ makeURL('administrace:prispevky') }}"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>  Zpět</a>
     </div>
 {% endblock %}

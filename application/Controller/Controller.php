@@ -13,7 +13,7 @@ namespace Mini\Controller;
  * Class Controller
  * @package Mini\Controller
  *
- * Třída slouží jako rodič pro jednotlivé kontrolery obsahující společné vlastnosti a atributy
+ * Třída slouží jako rodič pro jednotlivé kontrolery obsahující společné vlastnosti a atributy.
  */
 class Controller
 {

@@ -17,7 +17,7 @@ use Mini\Model\Prispevky;
  * Class HomeController
  * @package Mini\Controller
  *
- * Třída zajišťuje vykreslování správných podstránek a komunikaci s modelem Prispevky
+ * Třída zajišťuje vykreslování správných podstránek a komunikaci s modelem Prispevky.
  */
 class HomeController extends Controller
 {

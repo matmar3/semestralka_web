@@ -13,7 +13,7 @@ namespace Mini\Model;
  * Class Uzivatel
  * @package Mini\Model
  *
- * Třída slouží k uchování údajů o přihlášeném uživateli
+ * Třída slouží k uchování údajů o přihlášeném uživateli.
  */
 class Uzivatel
 {

@@ -21,12 +21,6 @@ a:hover {
   min-height: 1em;
   z-index: 1000;
 }
-@media only screen and (max-width: 480px) {
-  .flash {
-    margin-left: -150px !important;
-    width: 300px !important;
-  }
-}
 
 #banner {
   width: 100%;
@@ -46,6 +40,23 @@ a:hover {
   }
   div {
     padding: 10px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .flash {
+    margin-left: -150px !important;
+    width: 300px !important;
+  }
+
+  #banner .vcenter {
+    text-align: center;
+    align-content: center;
+    display: block;
+    padding: 10px;
+    div {
+      padding: 0;
+    }
   }
 }
 
@@ -90,7 +101,7 @@ a:hover {
   }
 }
 
-// snaha rusit soudou barvu pri open nav
+// přebarvení nav na červenou a bílou při najetí myši
 #user-btn, #user-btn a {
   background-image: none !important;
 }
@@ -114,7 +125,7 @@ a:hover {
 }
 // hlavní wrapper
 #wrap {
-  min-height: 65%;
+  min-height: 70%;
   #main {
     overflow:auto;
     padding-bottom:150px;
@@ -175,10 +186,22 @@ footer p:last-child {
   }
 }
 
+/*------------------------- home/terminy ----------------------------*/
+#terminy {
+  margin-bottom: 50px;
+}
+
 /*------------------------- home/kriteria ---------------------------*/
 #kriteria {
+  margin-bottom: 50px;
   ul {
     padding-bottom: 10px;
+  }
+  a {
+    color: @cervena;
+  }
+  a:hover {
+    color: @modra;
   }
 }
 
